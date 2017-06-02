@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('form').submit(function(){
+        var loc = $('input[name="location"]').val();
+        $.get('http://api.openweathermap.org/data/2.5/weather?q='+loc+'&APPID=59075ddaca78239f93d94313e1bded57&units=imperial',function(data) {
+          console.log(data);
+          $('p').append("It's "+data.main.temp+" degrees in "+loc+". "+"The humidity is "+data.main.humidity+"% and the wind speed is "+data.wind.speed+" mph. ")
+          $('h2').html(""+loc+"")
+        })
+        return false;
+      })
+      //$('h2').html(":"+loc+"")
+    })
+    </script>
+  </head>
+  <body>
+    <h2>Your Location</h2>
+    <form>
+      <input type="text" name="location">
+      <input type="submit" name="">
+    </form>
+    <p></p>
+  </body>
+  </html>
